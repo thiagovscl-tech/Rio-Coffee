@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>TESTE HTML</title>
+    <link rel="stylesheet" href="teste.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content"> 
+            <div class="nav-logo">Rio<span>Coffee</span></div>
+
+        <input type="checkbox" id="menu-control" class="menu-checkbox">
+        <label for="menu-control" class="menu-button">
+            <span class="sandubas"></span>
+        </label>
+
+        <ul class="nav-links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#" class="btn-contato">Contato</a></li>
+        </ul>
+        </div>
+    </nav>
+
+
+    <div class="container-menu"> 
+        
+        <div class="menu-card">
+            <div class="badge"></div>
+            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=300" alt="Café 1">
+            
+            <div class="content">
+                <h3>Café Latte</h3>
+                
+                <ul class="ingredientes-card">
+                    <li>Grãos Arábica</li>
+                    <li>Leite integral</li>
+                    <li>Creme de baunilha</li>
+                </ul>
+                
+                <span class="price">R$ 14,90</span>
+                <button class="btn-pedido" data-id="1" data-categoria="quente">Adicionar</button>            </div>
+        </div>
+
+        <div class="menu-card promocao">
+            <div class="badge"></div>
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=300" alt="Café 2">
+            <div class="content">
+                <h3>Capuccino Especial</h3>
+
+                <ul class="ingredientes-card">
+                    <li>leite</li>
+                    <li>caramelo</li>
+                    <li>Creme de baunilha</li>
+                </ul>
+                <span class="price">R$ 12,00</span>
+                <button class="btn-pedido">Pedir agora</button>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=300" alt="Café 3">
+            <div class="content">
+                <h3>Expresso</h3>
+
+                <ul class="ingredientes-card">
+                    <li>café moído</li>
+                    <li>creme</li>
+                    <li>Creme de baunilha</li>
+                </ul>
+                <span class="price">R$ 8,50</span>
+                <button class="btn-pedido">Pedir</button>
+            </div>
+        </div>
+
+    </div> 
+            <script src="script.js"></script>
+</body>
+</html>
