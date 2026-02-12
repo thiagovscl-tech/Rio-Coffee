@@ -1,82 +1,435 @@
 <html>
-<head>
-    <title>TESTE HTML</title>
-    <link rel="stylesheet" href="teste.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <title>Youtubeee</title>
+        <link rel="stylesheet" href="index.css">
 
-    <nav class="navbar">
-        <div class="nav-content"> 
-            <div class="nav-logo">Rio<span>Coffee</span></div>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <input type="checkbox" id="menu-control" class="menu-checkbox">
-        <label for="menu-control" class="menu-button">
-            <span class="sandubas"></span>
-        </label>
+    </head>
 
-        <ul class="nav-links">
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">Sobre</a></li>
-        <li><a href="#" class="btn-contato">Contato</a></li>
-        </ul>
-        </div>
-    </nav>
+    <body>
+                      <!-- TOPO FIXO (barra superior) -->
 
+            <div class="topo">
+            <div class="topo--container1">      <!-- LADO ESQUERDO DO TOPO (menu + logo) -->
 
-    <div class="container-menu"> 
-        
-        <div class="menu-card">
-            <div class="badge"></div>
-            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=300" alt="Café 1">
+                <img class="menu--icon" src="./icons/menu-icon.svg">  
+                <img class="menu--logo" src="./icons/logo.svg" >
+
+            </div>
+            <div class="topo--container2">      <!-- CENTRO DO TOPO (campo de busca) -->
+
+                
+                    <input type="search" class="campo--pesquisa"> 
+                    <button class="botao--pesquisa">
+                        <img src="./icons/lupa.svg">
+                    </button>
+
+                    <button class="botao--mic">
+                        <img src="./icons/microphone.svg">
+
+                    </button>
+
+                    <!-- LADO DIREITO DO TOPO (ícones e avatar) -->
+
+            </div>
+            <div class="topo--container3">
+                <img src="./icons/upload.svg"/>
+                <img src="./icons/apps.svg"/>
+                <img src="./icons/bell.svg"/>
             
-            <div class="content">
-                <h3>Café Latte</h3>
-                
-                <ul class="ingredientes-card">
-                    <li>Grãos Arábica</li>
-                    <li>Leite integral</li>
-                    <li>Creme de baunilha</li>
-                </ul>
-                
-                <span class="price">R$ 14,90</span>
-                <button class="btn-pedido" data-id="1" data-categoria="quente">Adicionar</button>            </div>
-        </div>
+             <div class="avatar">
 
-        <div class="menu-card promocao">
-            <div class="badge"></div>
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=300" alt="Café 2">
-            <div class="content">
-                <h3>Capuccino Especial</h3>
-
-                <ul class="ingredientes-card">
-                    <li>leite</li>
-                    <li>caramelo</li>
-                    <li>Creme de baunilha</li>
-                </ul>
-                <span class="price">R$ 12,00</span>
-                <button class="btn-pedido">Pedir agora</button>
+             </div>   
             </div>
+
         </div>
 
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=300" alt="Café 3">
-            <div class="content">
-                <h3>Expresso</h3>
+            <div class="menu">
 
-                <ul class="ingredientes-card">
-                    <li>café moído</li>
-                    <li>creme</li>
-                    <li>Creme de baunilha</li>
-                </ul>
-                <span class="price">R$ 8,50</span>
-                <button class="btn-pedido">Pedir</button>
-            </div>
         </div>
+        
+         <!-- CONTAINER PRINCIPAL DO LAYOUT -->
+    <!-- Tudo aqui dentro fica lado a lado -->
 
-    </div> 
-            <script src="script.js"></script>
-</body>
+        <div class="layout">
+
+                    <!-- MENU LATERAL -->
+
+            <nav> 
+                <div class="botao--menu">
+                    <img src="./icons/home.svg">
+                    <label class="nome--botao">Home</label>
+                </div>
+        
+                <div class="botao--menu">
+                    <img src="./icons/shorts.svg">
+                    <label class="nome--botao">Shorts</label>
+                </div>
+        
+                <div class="botao--menu">
+                    <img src="./icons/subscriptions.svg">
+                    <label class="nome--botao">Subscriptions</label>
+                </div>
+        
+                <div class="botao--menu">
+                    <img src="./icons/library.svg">
+                    <label class="nome--botao">Library</label>
+                </div>
+            </nav>
+            
+                    <!-- BANNER (fica ao lado do menu) -->
+
+            
+        
+            
+                        <!-- INFOS DO CANAL -->
+
+                        <div class="canal">
+                            
+                            <div class="banner"></div>
+        
+                            
+                  
+                        <!-- LINHA PRINCIPAL (ESQUERDA x DIREITA) -->
+                        <div class="infos--canal--1"> 
+                  
+                          <!-- LADO ESQUERDO -->
+                          <div class="infos--canal--2">
+                  
+                            <div class="avatar--canal"></div>
+                  
+                            <div class="nome--canal--conteiner">
+                              <div class="linha--nome">
+                                <h1 class="nome--canal">Canal do Thiago</h1>
+                                <img class="check--botao" src="./icons/check-circle.svg">
+                              </div>
+                  
+                              <label class="inscritos">1M subscribers</label>
+                            
+                              
+                            </div>
+                  
+                          </div>
+                          
+                          
+                          <!-- LADO DIREITO -->
+                          <button class="Subscribe">Subscribe</button>
+                          </div>
+
+                          <div class="menu--conteiner">     <!-- abre a barra -->
+                            <div class="menu--item menu--item--selecionado">
+                                HOME 
+                            </div>
+
+                            <div class="menu--item">
+                                VIDEOS
+                            </div>
+
+                            <div class="menu--item">
+                                PLAYLISTS
+                            </div>
+
+                            <div class="menu--item">
+                                COMUNIDADE 
+                            </div>
+
+                            <div class="menu--item">
+                                LOJA 
+                            </div>
+
+                            <div class="menu--item">
+                                CANAIS 
+                            </div>
+
+                            <div class="menu--item">
+                                SOBRE
+                            </div>
+
+                            <div class="menu--item">
+                                <img src="./icons/lupa.svg"/>
+                            </div>
+                            </div>
+                                        
+                                <!-- TRAILER PRINCIPAL -->
+
+                            <div class="trailer--conteiner">
+                                <div class="trailer--1">
+                                    <div class="video"> </div>
+                                </div>
+                                    
+                                <div class="trailer--2">
+                                    <h1 class="nome--video">VIDEO 2026</h1>
+                                    <h2 class="infos--video">500k views</h2>
+                                    <h3 class="descricao--video">texto padrão em latim, sem sentido para o leitor moderno, usado por designers e editores para preencher espaços em layouts</h3>
+                                </div>
+                                
+
+                            </div>      <!-- fecha o botao -->
+
+                            <!-- SESSÃO DE VÍDEOS (IRMÃ, não filha) -->
+
+                                <div class="sessao--videos">
+                                    <div class="cabecalho--videos">
+
+                                    <h1 class="nome--video">Novos videos</h1>
+
+                                </br>
+
+                                    <div class="playall--conteiner">
+                                         <img class="playall--conteiner" src="./icons/play.svg">
+                                         <label class="playall">Play all</label>
+                                         
+                                        </div>
+                                    </div>
+
+                                         <br/>
+
+                                         <div class="sessao--row--videos">
+
+                                            <div class="video--conteiner">
+                                                <div class="video"></div>
+                                            
+                                                <!-- TÍTULO DO VÍDEO -->
+                                                <h1 class="nome--video nome--video--sessao">
+                                                    Novos videos 2
+                                                </h1>
+                                            
+                                                <!-- LINHA DO CANAL -->
+                                                <div class="linha--canal--video">
+                                                    <h2 class="nome--canal">Canal do Thiago</h2>
+                                                    <img class="check--icon2" src="./icons/check-circle.svg">
+                                              
     
+                                                </div> <!-- fecha linha--canal--video -->
+                                                <div class="views--video">300k views </div>
+    
+    
+                                            </div> <!-- fecha video--conteiner -->
+
+
+                                            <div class="video--conteiner">
+                                                <div class="video"></div>
+                                            
+                                                <!-- TÍTULO DO VÍDEO -->
+                                                <h1 class="nome--video nome--video--sessao">
+                                                    Novos videos 2
+                                                </h1>
+                                            
+                                                <!-- LINHA DO CANAL -->
+                                                <div class="linha--canal--video">
+                                                    <h2 class="nome--canal">Canal do Thiago</h2>
+                                                    <img class="check--icon2" src="./icons/check-circle.svg">
+                                              
+    
+                                                </div> <!-- fecha linha--canal--video -->
+                                                <div class="views--video">300k views </div>
+    
+    
+                                            </div> <!-- fecha video--conteiner -->
+
+
+                                            <div class="video--conteiner">
+                                                <div class="video"></div>
+                                            
+                                                <!-- TÍTULO DO VÍDEO -->
+                                                <h1 class="nome--video nome--video--sessao">
+                                                    Novos videos 2
+                                                </h1>
+                                            
+                                                <!-- LINHA DO CANAL -->
+                                                <div class="linha--canal--video">
+                                                    <h2 class="nome--canal">Canal do Thiago</h2>
+                                                    <img class="check--icon2" src="./icons/check-circle.svg">
+                                              
+    
+                                                </div> <!-- fecha linha--canal--video -->
+                                                <div class="views--video">300k views </div>
+    
+    
+                                            </div> <!-- fecha video--conteiner -->
+
+                                            <div class="video--conteiner">
+                                                <div class="video"></div>
+                                            
+                                                <!-- TÍTULO DO VÍDEO -->
+                                                <h1 class="nome--video nome--video--sessao">
+                                                    Novos videos 2
+                                                </h1>
+                                            
+                                                <!-- LINHA DO CANAL -->
+                                                <div class="linha--canal--video">
+                                                    <h2 class="nome--canal">Canal do Thiago</h2>
+                                                    <img class="check--icon2" src="./icons/check-circle.svg">
+                                              
+    
+                                                </div> <!-- fecha linha--canal--video -->
+                                                <div class="views--video">300k views </div>
+    
+    
+                                            </div> <!-- fecha video--conteiner -->
+
+                                            <div class="video--conteiner">
+                                                <div class="video"></div>
+                                            
+                                                <!-- TÍTULO DO VÍDEO -->
+                                                <h1 class="nome--video nome--video--sessao">
+                                                    Novos videos 2
+                                                </h1>
+                                            
+                                                <!-- LINHA DO CANAL -->
+                                                <div class="linha--canal--video">
+                                                    <h2 class="nome--canal">Canal do Thiago</h2>
+                                                    <img class="check--icon2" src="./icons/check-circle.svg">
+                                              
+    
+                                                </div> <!-- fecha linha--canal--video -->
+                                                <div class="views--video">300k views </div>
+    
+    
+                                            </div> <!-- fecha video--conteiner -->
+
+                                            
+
+
+                                         </div>
+
+                                                <!-- SEGUNDA SESSÃO DE VÍDEOS (IRMÃ, não filha) -->
+
+                                    
+
+
+                                         <div class="sessao--videos">
+                                            <div class="cabecalho--videos">
+        
+                                            <h1 class="nome--video">Novos videos</h1>
+        
+                                        </br>
+        
+                                            <div class="playall--conteiner">
+                                                 <img class="playall--conteiner" src="./icons/play.svg">
+                                                 <label class="playall">Play all</label>
+                                                 
+                                                </div>
+                                            </div>
+        
+                                                 <br/>
+        
+                                                 <div class="sessao--row--videos">
+        
+                                                    <div class="video--conteiner">
+                                                        <div class="video"></div>
+                                                    
+                                                        <!-- TÍTULO DO VÍDEO -->
+                                                        <h1 class="nome--video nome--video--sessao">
+                                                            Novos videos 2
+                                                        </h1>
+                                                    
+                                                        <!-- LINHA DO CANAL -->
+                                                        <div class="linha--canal--video">
+                                                            <h2 class="nome--canal">Canal do Thiago</h2>
+                                                            <img class="check--icon2" src="./icons/check-circle.svg">
+                                                      
+            
+                                                        </div> <!-- fecha linha--canal--video -->
+                                                        <div class="views--video">300k views </div>
+            
+            
+                                                    </div> <!-- fecha video--conteiner -->
+        
+        
+                                                    <div class="video--conteiner">
+                                                        <div class="video"></div>
+                                                    
+                                                        <!-- TÍTULO DO VÍDEO -->
+                                                        <h1 class="nome--video nome--video--sessao">
+                                                            Novos videos 2
+                                                        </h1>
+                                                    
+                                                        <!-- LINHA DO CANAL -->
+                                                        <div class="linha--canal--video">
+                                                            <h2 class="nome--canal">Canal do Thiago</h2>
+                                                            <img class="check--icon2" src="./icons/check-circle.svg">
+                                                      
+            
+                                                        </div> <!-- fecha linha--canal--video -->
+                                                        <div class="views--video">300k views </div>
+            
+            
+                                                    </div> <!-- fecha video--conteiner -->
+        
+        
+                                                    <div class="video--conteiner">
+                                                        <div class="video"></div>
+                                                    
+                                                        <!-- TÍTULO DO VÍDEO -->
+                                                        <h1 class="nome--video nome--video--sessao">
+                                                            Novos videos 2
+                                                        </h1>
+                                                    
+                                                        <!-- LINHA DO CANAL -->
+                                                        <div class="linha--canal--video">
+                                                            <h2 class="nome--canal">Canal do Thiago</h2>
+                                                            <img class="check--icon2" src="./icons/check-circle.svg">
+                                                      
+            
+                                                        </div> <!-- fecha linha--canal--video -->
+                                                        <div class="views--video">300k views </div>
+            
+            
+                                                    </div> <!-- fecha video--conteiner -->
+        
+                                                    <div class="video--conteiner">
+                                                        <div class="video"></div>
+                                                    
+                                                        <!-- TÍTULO DO VÍDEO -->
+                                                        <h1 class="nome--video nome--video--sessao">
+                                                            Novos videos 2
+                                                        </h1>
+                                                    
+                                                        <!-- LINHA DO CANAL -->
+                                                        <div class="linha--canal--video">
+                                                            <h2 class="nome--canal">Canal do Thiago</h2>
+                                                            <img class="check--icon2" src="./icons/check-circle.svg">
+                                                      
+            
+                                                        </div> <!-- fecha linha--canal--video -->
+                                                        <div class="views--video">300k views </div>
+            
+            
+                                                    </div> <!-- fecha video--conteiner -->
+        
+                                                    <div class="video--conteiner">
+                                                        <div class="video"></div>
+                                                    
+                                                        <!-- TÍTULO DO VÍDEO -->
+                                                        <h1 class="nome--video nome--video--sessao">
+                                                            Novos videos 2
+                                                        </h1>
+                                                    
+                                                        <!-- LINHA DO CANAL -->
+                                                        <div class="linha--canal--video">
+                                                            <h2 class="nome--canal">Canal do Thiago</h2>
+                                                            <img class="check--icon2" src="./icons/check-circle.svg">
+                                                      
+            
+                                                        </div> <!-- fecha linha--canal--video -->
+                                                        <div class="views--video">300k views </div>
+            
+            
+                                                    </div> <!-- fecha video--conteiner -->
+        
+                                                    
+        
+        
+                                                 </div>
+
+                
+                  
+                  
+                  
+    </body>
+
+
 </html>
