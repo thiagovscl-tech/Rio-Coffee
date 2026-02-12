@@ -1,24 +1,33 @@
-/* 1. CONFIGURAÇÕES GERAIS E VARIÁVEIS */
+/* 1. RESET E CONFIGURAÇÕES GERAIS */
 :root {
     --primary-color: #3d2b1f;
     --secondary-color: #d4a373;
     --bg-light: #f5f5f5;
     --white: #ffffff;
+    --footer-bg: #3d2b1f;
     --transition-fast: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ESSENCIAL para o formulário não quebrar */
 }
 
 body {
     background-color: var(--bg-light);
-    margin: 0;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    color: var(--primary-color);
 }
 
-/* 2. NAVBAR */
+/* 2. NAVBAR E MENU MOBILE */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 15px 0;
@@ -33,10 +42,41 @@ body {
     padding: 0 30px;
 }
 
+/* ESCONDE A CAIXINHA DO CHECKBOX */
+.menu-checkbox {
+    display: none !important;
+}
+
+.menu-button {
+    display: none;
+    cursor: pointer;
+}
+
+.sandubas {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--primary-color);
+    position: relative;
+}
+
+.sandubas::before, .sandubas::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: var(--primary-color);
+    left: 0;
+}
+
+.sandubas::before { top: -8px; }
+.sandubas::after { bottom: -8px; }
+
 .nav-logo {
     font-size: 24px;
     font-weight: bold;
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 .nav-logo span { color: var(--secondary-color); }
@@ -44,120 +84,212 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 25px;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--primary-color);
     font-weight: 500;
-    position: relative;
+    transition: 0.3s;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--secondary-color);
-    transition: width 0.3s ease;
+.nav-links a:hover { color: var(--secondary-color); }
+
+/* 3. CARRINHO LATERAL */
+#carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: -100%; /* USA SEMPRE PORCENTAGEM PARA ESCONDER TUDO */
+    width: 320px;
+    height: 100vh;
+    background-color: var(--white);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    /* UMA ÚNICA TRANSIÇÃO FLUIDA */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3000; /* MAIOR QUE A NAVBAR */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
 }
 
-.nav-links a:hover::after {
+/* ESTADO ABERTO - PRIORIDADE MÁXIMA */
+#carrinho-lateral.aberto {
+    right: 0 !important;
+}
+
+/* AJUSTE PARA CELULAR */
+@media (max-width: 480px) {
+    #carrinho-lateral {
+        width: 100%; /* OCUPA A TELA TODA */
+        right: -100%; 
+    }
+}
+/* Quando o carrinho estiver aberto, escondemos o footer e main para foco total */
+body:has(#carrinho-lateral.aberto) footer,
+body:has(#carrinho-lateral.aberto) main {
+    opacity: 0.1; /* Deixa quase invisível */
+    filter: blur(4px); /* Dá um efeito de desfoque */
+    pointer-events: none; /* Impede cliques no que está ao fundo */
+    transition: var(--transition-fast);
+}
+
+/* Ajuste específico para Mobile: Esconder totalmente o footer */
+@media (max-width: 480px) {
+    body:has(#carrinho-lateral.aberto) footer {
+        display: none; 
+    }
+}
+
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+#fechar-carrinho {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#lista-itens-carrinho {
+    list-style: none;
+    margin-top: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#lista-itens-carrinho li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+/* 4. BUSCA E MENU CARDS */
+.busca-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+#input-busca {
     width: 100%;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 2px solid var(--secondary-color);
+    outline: none;
 }
 
-/* 3. MENU HAMBÚRGUER (Controle) */
-.menu-checkbox, .menu-button { display: none; }
-
-/* 4. CONTAINER E CARDS */
 .container-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 50px 20px;
+    padding: 20px;
 }
 
 .menu-card {
     background: var(--white);
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column; /* Faz o card crescer verticalmente */
-    transition: transform 0.3s;
-    width: 100%;
-    max-width: 350px;
-    justify-self: center; /* Centraliza no grid */
+    transition: 0.3s;
 }
 
 .menu-card:hover { transform: translateY(-10px); }
 
-.menu-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
+.menu-card img { width: 100%; height: 200px; object-fit: cover; }
 
-/* 5. CONTEÚDO INTERNO DO CARD */
-.content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Ocupa todo o espaço para empurrar o botão */
-}
-
-.content h3 { margin: 0 0 10px 0; color: var(--primary-color); }
-
-.ingredientes-card {
-    list-style-type: none;
-    padding-left: 0px;
-    margin: 10px 0;
-    flex-grow: 1; /* ESSENCIAL: Empurra o preço e o botão para o rodapé */
-}
-
-.ingredientes-card li {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 5px;
-    position: relative
-}
-
-.price {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-top: auto; /* Garante alinhamento no fundo */
-    padding: 10px 0;
-}
+.content { padding: 20px; }
 
 .btn-pedido {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* 5. FORMULÁRIO DE CONTATO (CORREÇÃO DE LARGURA) */
+.contato { padding: 80px 20px; text-align: center; }
+
+.container-form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.grupo-input { margin-bottom: 20px; }
+
+.grupo-input label { display: block; margin-bottom: 8px; font-weight: 600; }
+
+/* O width 100% agora funciona por causa do box-sizing: border-box */
+.grupo-input input, 
+.grupo-input textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    display: block;
+}
+
+.btn-enviar {
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
     width: 100%;
-    }
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
 
-    .btn-pedido {
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+/* 6. FOOTER */
+.footer {
+    background: var(--footer-bg);
+    color: white;
+    padding: 60px 20px 20px;
+    margin-top: 80px;
+}
 
-    .btn-pedido:hover {
-        background-color: var(--secondary-color);
-        transform: scale(1.02); /* Dá um leve "pulo" */
-    }
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
 
-/* 6. RESPONSIVIDADE (MOBILE) */
+.footer-section { flex: 1; min-width: 250px; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+}
+
+/* 7. RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .menu-button { display: block; cursor: pointer; }
+    .menu-button { display: block; }
 
     .nav-links {
         position: fixed;
@@ -167,27 +299,251 @@ body {
         height: 100vh;
         background: var(--white);
         flex-direction: column;
-        padding: 80px 30px;
+        padding: 100px 30px;
         transition: 0.4s;
-        z-index: 999;
+        box-shadow: -10px 0 20px rgba(0,0,0,0.1);
     }
 
     .menu-checkbox:checked ~ .nav-links { right: 0; }
+}
 
-    .sandubas {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background: var(--primary-color);
-        position: relative;
+/* 8. MODO ESCURO */
+body.dark-theme {
+    --bg-light: #121212;
+    --white: #1e1e1e;
+    --footer-bg: #000000;
+}
+body.dark-theme .ingredientes-card li {
+    color: #cccccc; 
+}
+
+body.dark-theme .price {
+    color: #ffffff; /* Preço fica branco no modo escuro */
+}
+
+body.dark-theme .navbar { background-color: rgba(30, 30, 30, 0.9); }
+body.dark-theme .nav-logo, 
+body.dark-theme .nav-links a,
+body.dark-theme .content h3,
+body.dark-theme label { color: #ffffff; }
+
+/* BOTÃO TEMA */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--secondary-color);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2000;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ESTILO DO CARRINHO NA NAV */
+.nav-cart {
+    background: var(--secondary-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+#carrinho-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+/* 4. AJUSTE NOS CARDS (REMOVENDO AS BOLINHAS) */
+.ingredientes-card {
+    list-style: none; /* Remove as bolinhas */
+    padding: 0;       /* Remove o recuo da esquerda */
+    margin: 10px 0;   /* Dá um espaço em cima e embaixo da lista */
+    flex-grow: 1;     /* Ajuda a manter o botão sempre no final do card */
+}
+
+.ingredientes-card li {
+    font-size: 0.9rem;
+    color: #666;      /* Um cinza mais suave para os ingredientes */
+    margin-bottom: 5px;
+    display: flex;    /* Opcional: ajuda a alinhar ícones se você usar */
+    align-items: center;
+}
+
+/* Ajuste para o modo escuro não deixar o texto sumir */
+body.dark-theme .ingredientes-card li {
+    color: #bbb;
+}
+
+.carrinho-item-controles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f9f9f9;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.btn-acao {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: transform 0.2s;
+}
+
+.btn-acao:hover {
+    transform: scale(1.2);
+    color: var(--secondary-color);
+}
+
+.qtd-display {
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.btn-lixeira {
+    margin-left: 10px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.btn-lixeira:hover {
+    opacity: 1;
+}
+
+.btn-pedido.sucesso {
+    background-color: #27ae60 !important;
+    transition: 0.2s;
+}
+
+/* 1. Ajuste de toque para botões (Área de clique de 44px é o padrão Apple/Google) */
+.btn-acao, .btn-pedido, .theme-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    touch-action: manipulation; /* Remove o delay de 300ms do clique no mobile */
+}
+
+/* 2. Melhoria no Carrinho Lateral para Celular */
+@media (max-width: 480px) {
+    #carrinho-lateral {
+        width: 100%; /* Carrinho ocupa a tela toda no celular */
+        right: -100%; /* Esconde totalmente */
     }
-    .sandubas::before, .sandubas::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 3px;
-        background: var(--primary-color);
+
+    #carrinho-lateral.aberto {
+        right: 0 !important;
     }
-    .sandubas::before { top: -8px; }
-    .sandubas::after { bottom: -8px; }
+
+    .nav-content {
+        padding: 0 15px; /* Menos espaço nas laterais em telas pequenas */
+    }
+
+    .container-menu {
+        grid-template-columns: 1fr; /* Força uma coluna só para as imagens ficarem grandes */
+        gap: 15px;
+    }
+
+    /* Aumenta a fonte do preço para facilitar a leitura */
+    .price {
+        font-size: 1.2rem;
+    }
+}
+
+/* 3. Evitar zoom automático ao clicar no input (iOS) */
+input[type="text"] {
+    font-size: 16px !important; /* Fontes menores que 16px causam zoom automático no iPhone */
+}
+
+@media (max-width: 480px) {
+    #carrinho-lateral {
+        width: 100%;
+    }
+}
+
+.carrinho-total {
+    padding: 20px 0;
+    border-top: 2px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#valor-total {
+    color: var(--secondary-color);
+}
+
+.carrinho-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.carrinho-item-info span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* CONTAINER DO CUPOM ESTILO TOK&STOK */
+.cupom-container {
+    margin: 20px 0;
+    padding: 5px;
+    background-color: #f9f9f9; /* Cinza bem clarinho */
+    border-radius: 4px; /* Bordas mais retas e elegantes */
+}
+
+.cupom-field {
+    display: flex;
+    gap: 0; /* Cola o input no botão */
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.cupom-field:focus-within {
+    border-color: var(--primary-color); /* Realça quando clica */
+}
+
+#input-cupom {
+    border: none;
+    padding: 8px;
+    flex: 1;
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    outline: none;
+    background: transparent;
+}
+
+#btn-aplicar-cupom {
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0 10px;
+    font-size: 0.55rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+#btn-aplicar-cupom:hover {
+    opacity: 0.9;
+}
+
+#msg-cupom {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    min-height: 15px; /* Evita que o layout "pule" quando a mensagem aparece */
 }
